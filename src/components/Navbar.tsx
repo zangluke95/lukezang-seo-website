@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,56 +18,63 @@ const Navbar: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Blog', href: '/blog', isRoute: true },
-    { name: 'Case Studies', href: '/projects', isRoute: true },
+    { name: "About", href: "#about" },
+    { name: "Experience", href: "#experience" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Blog", href: "/blog", isRoute: true },
+    { name: "Case Studies", href: "/projects", isRoute: true },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, linkItem: any) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    linkItem: any,
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
 
-    if (linkItem.isRoute || linkItem.href === '/') {
+    if (linkItem.isRoute || linkItem.href === "/") {
       navigate(linkItem.href, { replace: false });
       window.scrollTo(0, 0);
       return;
     }
 
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (location.pathname !== "/") {
+      navigate("/");
       setTimeout(() => {
         const element = document.querySelector(linkItem.href);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
     } else {
       const element = document.querySelector(linkItem.href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      } else if (linkItem.href === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
+      } else if (linkItem.href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }
   };
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        isScrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <a href="#" className="text-xl font-bold text-portfolio-navy" onClick={(e) => handleNavClick(e, { href: '/' })}>
+          <a
+            href="#"
+            className="text-xl font-bold text-portfolio-navy"
+            onClick={(e) => handleNavClick(e, { href: "/" })}
+          >
             Luke Zang
           </a>
 
